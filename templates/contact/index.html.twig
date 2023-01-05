@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<noscript>
+    <p>
+        Pour pouvoir accéder au formulaire de contact, vous devez impérativement activer le support de JavaScript de votre navigateur.
+    </p>
+</noscript>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+
+    This friendly message is coming from:
+
+
+{% for message in app.flashes('success') %}
+    <div class="flash-success" style="text-align: center;font-weight: bold;">
+        {{ message }}
+    </div>
+{% endfor %}
+{{ form(form) }}
+
+
+
+<script>
+
+document.getElementById('contact_message_destinataire').addEventListener('change', function() {
+const array=[];
+
+{% for element in destinataires %}
+value = Number.parseInt({{element.id}});
+array.push(value.toString());
+{% endfor %}
+x=this.value;
+
+if (array.includes(x)){
+    document.getElementById('contact_message_cv').style.display = 'block';
+} else {
+    document.getElementById('contact_message_cv').style.display = 'none';
+}
+});
+</script>
+{% endblock %}
+
+
+
+
